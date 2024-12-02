@@ -1,0 +1,95 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<div class="MRZ-Intro">
+    <h1>MRZ LINE VALIDATOR</h1>
+</div>
+<hr style="border: 1px solid white; margin: 10px 0;" />
+<div class="MRZ-Content">
+    <div class="form-container">
+        <form class="form-control" method="post" autocomplete="off">
+            <div class="form-group">
+                <label for="passportNumber">Passport Number: </label>
+                <input type="text" id="passportNumber" name="PassportNumber"
+                       class="form-control" value="@Model.PassportNumber" maxlength="9" minlength="9" placeholder="Enter Passport Number" required />
+            </div>
+            <div class="form-group">
+                <label for="nationality">Nationality (3 Letter Code): </label>
+                <input type="text" id="nationality" name="Nationality"
+                       class="form-control" value="@Model.Nationality" maxlength="3" minlength="3" placeholder="Enter Nationality" required style="text-transform:uppercase;" required />
+            </div>
+            <div class="form-group">
+                <label for="dob">Date Of Birth: </label>
+                <input type="date" id="dob" name="DOB" class="form-control"
+                       value="@Model.DOB.ToString("yyyy-MM-dd")" required />
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <ul class="list-unstyled">
+                    <li>
+                        <input type="radio" id="male" name="Gender" value="M" @(Model.Gender == 'M' ? "checked" : "") />
+                        <label for="male">Male</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="female" name="Gender" value="F" @(Model.Gender == 'F' ? "checked" : "") />
+                        <label for="female">Female</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="other" name="Gender" value="0" @(Model.Gender == '0' ? "checked" : "") />
+                        <label for="other">Other</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="form-group">
+                <label for="expDate">Expiration Date: </label>
+                <input type="date" id="expDate" name="ExpDate"
+                       class="form-control" value="@Model.ExpDate.ToString("yyyy-MM-dd")" required />
+            </div>
+            <div class="form-group">
+                <label for="mrzline2">Enter MRZ Line 2 (44 characters): </label>
+                <input type="text" id="mrzline2" name="MRZLine2"
+                       class="form-control" value="@Model.MRZLine2" maxlength="44" minlength="44" placeholder="Enter MRZ Line 2" required />
+            </div>
+            <div class="validate-btn">
+                <button type="submit" asp-page="/Results" class="btn btn-primary">Validate</button>
+            </div>
+        </form>
+    </div>
+<!--    <div class="image-container">
+        <p>Upload an Image</p>
+        <input type="file" id="imageUpload" name="imageUpload" accept="image/*" />
+        <p>Supported formats: JPG, PNG</p>
+    </div> -->
+    <div class="results-container">
+        @if (Model.ValidationResults != null && Model.ValidationResults.Any())
+        {
+            <div class="results">
+                <h4>Validation Results:</h4>
+                @if(Model.AreAllValid())
+                {
+                    <h5 style="color:darkolivegreen">The provided information does match the MRZ data.</h5>
+                }
+                @if (!Model.AreAllValid())
+                {
+                    <h5 style="color:darkred">The provided information does not match the MRZ data.</h5>
+                }
+                <ul class="list-group">
+                    @foreach (var result in Model.ValidationResults)
+                    {
+                        <li class="list-group-item">
+                            <strong>@result.Key:</strong> @result.Value
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger mt-3">@Model.ErrorMessage</div>
+        }
+    </div>
+</div>
+
