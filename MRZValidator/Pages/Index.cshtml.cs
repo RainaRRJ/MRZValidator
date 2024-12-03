@@ -52,7 +52,11 @@ namespace MRZValidator.Pages
             }
             if (!string.IsNullOrEmpty(Nationality))
             {
-                Nationality = Nationality.ToUpper(); 
+                Nationality = Nationality.ToUpper();
+            }
+            if (!string.IsNullOrEmpty(MRZLine2))
+            {
+                MRZLine2 = MRZLine2.ToUpper();
             }
             try
             {

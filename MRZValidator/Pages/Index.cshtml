@@ -57,7 +57,7 @@
             <div class="form-group">
                 <label for="mrzline2">Enter MRZ Line 2 (44 characters): </label>
                 <input type="text" id="mrzline2" name="MRZLine2"
-                       class="form-control" value="@Model.MRZLine2" maxlength="44" minlength="44" placeholder="Enter MRZ Line 2" required />
+                       class="form-control" value="@Model.MRZLine2" maxlength="44" minlength="44" placeholder="Enter MRZ Line 2" required style="text-transform:uppercase;" required />
             </div>
             <div class="validate-btn">
                 <button type="submit" asp-page-handler="Validate" class="btn btn-primary">Validate</button>
@@ -82,7 +82,15 @@
                     @foreach (var result in Model.ValidationResults)
                     {
                         <li class="list-group-item">
-                            <strong>@result.Key:</strong> @result.Value
+                            <strong>@result.Key:</strong>
+                            @if (result.Value)
+                            {
+                                @:Pass
+                            }
+                            else
+                            {
+                                @:Fail
+                            }
                         </li>
                     }
                 </ul>
