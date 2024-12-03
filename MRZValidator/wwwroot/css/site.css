@@ -17,6 +17,7 @@ body {
     font-family: "Fira Sans", sans-serif;
     background-color: #4C516D;
 }
+/*MRZ Intro*/
 .MRZ-Intro {
     text-align:left;
     margin-bottom: 20px;
@@ -33,31 +34,15 @@ body {
     display: flex;
     gap: 100px;
 }
+/*Form Container*/
 .form-container{
     flex: 3;
 }
-/*.image-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1.5px solid #B9D9EB;
-    border-radius: 2%;
-    text-align: center;
-    margin-top: 3%;
-    height: 300px;
-    color: white;
-}
-
-.image-container input {
-    margin-top: 10px;
-}*/
 .form-control {
     background-color: #4C516D;
     border-color: #4C516D;
     color: white;
-    font-size: 23px;
+    font-size: 20px;
     font-weight: 200;
 }
 .form-group {
@@ -72,39 +57,72 @@ body {
 }
 .validate-btn button {
     padding: 1% 0 1% 0;
-    font-size: 25px;
+    font-size: 22px;
     width: 100%;
     font-weight: 200;
     background-color: #7683cf;
     border-color: #7683cf;
 }
+/*Results Container */
 .results-container {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 7%;
+    margin-top: 6%;
     color: white;
     height: 500px;
     width: 500px;
 }
 .results {
-    font-size: 25px;
+    font-size: 21px;
     background-color: #7683cf;
-    padding:8%;
-    margin-top: 9%;
+    padding:7%;
+    margin-top: 7%;
     border-radius: 3%;
 }
 .results ul li{
     background-color: #7683cf;
-    font-size: 20px;
+    font-size: 18px;
     color: white;
     font-weight: 200;
-    padding: 4%;
+    padding: 3%;
     width: 400px;
 }
 .results h5{
-    font-size: 20px;
-    font-weight:400;
+    font-size: 21px;
+    font-weight:500;
+}
+/*Media Query */
+@media (max-width: 767px) {
+    .MRZ-Intro {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .MRZ-Intro h1 {
+        font-weight: 300;
+        font-size: 40px;
+        color: white;
+    }
+    .MRZ-Content {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .form-container,
+    .results-container {
+        width: 100%;
+        margin: 0;
+    }
+
+    .results-container {
+        margin-top: 20px;
+    }
+
+    .results ul li {
+        width: 100%;
+    }
 }

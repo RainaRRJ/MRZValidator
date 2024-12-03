@@ -13,9 +13,9 @@ namespace MRZValidator.Pages
         {
             _validator = validator;
         }
-
+        //User Input for the Fields
         [BindProperty]
-        public string MRZLine2 { get; set; } // User input for MRZ Line 2
+        public string MRZLine2 { get; set; } 
         [BindProperty]
         public string PassportNumber { get; set; }
         [BindProperty]
@@ -29,7 +29,7 @@ namespace MRZValidator.Pages
 
         public MRZData ParsedMRZ { get; private set; } // Parsed MRZ data
         public bool? IsMRZValid { get; private set; } // Validation result (null means not validated yet)
-        public Dictionary<string, bool> ValidationResults { get; private set; }
+        public Dictionary<string, bool> ValidationResults { get; private set; }// To store the data entered 
         public string ErrorMessage { get; private set; } // To display error messages
         public void OnGet()
         {
@@ -108,6 +108,7 @@ namespace MRZValidator.Pages
                 ErrorMessage = $"An unexpected error occurred: {ex.Message}";
             }
         }
+        //check if all values are true or false
         public bool AreAllValid()
         {
             return ValidationResults.Values.All(valid => valid);

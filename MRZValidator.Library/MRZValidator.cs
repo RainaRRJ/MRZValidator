@@ -2,6 +2,7 @@
 {
     public class PassportMRZValidator
     {
+        //To separate the components of the MRZ Line 2
         public MRZData ParseLine(string Line)
         {
             if (string.IsNullOrEmpty(Line) || Line.Length != 44)
@@ -62,6 +63,7 @@
             bool isPersonalNumberDateValid = CalculateCheckDigit(mrz.PersonalNumber) == (mrz.PersonalNumberCheckDigit - '0');
             return isPersonalNumberDateValid;
         }
+        // Calculate the check digit using the Modulus 10 algorithm
         public static int CalculateCheckDigit(string value)
         {
             int[] weights = { 7, 3, 1 };
@@ -77,6 +79,7 @@
 
             return sum % 10;
         }
+        //parse charecter
         public static int GetCharecter(char charecter)
         {
             if(char.IsDigit(charecter))
@@ -98,7 +101,7 @@
             return DateTime.ParseExact(date, "yyMMdd", null);
         }
     }
-    //public class
+    // Data structure to hold parsed MRZ line 2 fields
     public class MRZData
     {
         public string? PassportNumber { get; set; }
